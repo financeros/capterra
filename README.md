@@ -51,15 +51,16 @@ Ran all test suites related to changed files.
 ```
 
 
-## Functionality
-- Extracts JSON data from file
+## Design
+- Extracts JSON data from file (clicks.json)
 - Creates **24** 1-hour periods
-- Filters clicks based on 1-hour periods and sort by timestamp
-- Finds most expensive (and/or earliest click)
+- Filters Clicks data into 1-hour periods
+- Sorts Clicks by timestamp (earliest to latest)
 - Checks if most expensive click has an IP that appears more than 10 times
+- Finds only most expensive (maximum) click while traversing from earliest to latest
 - Allows download of valid Most Expensive Click (resultset.json)
-- Allows and validates user inputted JSON string
-- Allows reset to origin JSON
+- Allows and validates user inputted JSON data
+- Allows reset of app data to JSON file (clicks.json)
 
 ## Main Components
 Used React Class & Function Components + React Hooks
@@ -69,25 +70,27 @@ Used React Class & Function Components + React Hooks
 ### Display
 - Shows all clicks within that period (sorted by timestamp)
 - Shows the most expensive click
+- Shows 'No Valid Result' if no click exists or if click IP appears more than 10 times
+- Download button for resultset.json
 
 ### Periods
 - Shows an navigation tab to any 24 hour period
 - (if user JSON) Refresh to default data
 
-![alt text](https://docs.google.com/uc?id=1cIe5aq5s08eLS_A5pXAKX6h5nwzaDMhJ "screenshot")
+![alt text](https://docs.google.com/uc?id=1cIe5aq5s08eLS_A5pXAKX6h5nwzaDMhJ "screenshot1")
 
 ### Clicks
 - Shows all valid, invalid clicks and their count
-![alt text](https://docs.google.com/uc?id=1RgBO8PLJ2czsFQ4AJ7vUbMmvW7u42mJM "screenshot")
+![alt text](https://docs.google.com/uc?id=1RgBO8PLJ2czsFQ4AJ7vUbMmvW7u42mJM "screenshot2")
 
 ### InputForm
 - Updates data with JSON string via Text Box
-![alt text](https://docs.google.com/uc?id=1oJ5R8oE4jqucuSBPwsZ1pQRx9OQ6OA5H "screenshot")
+![alt text](https://docs.google.com/uc?id=1oJ5R8oE4jqucuSBPwsZ1pQRx9OQ6OA5H "screenshot3")
 
 ### App States
 - **period** ```Object``` - current period being viewed
 - **period_clicks** ```Array``` - total clicks within period
-- **highest_click** ```Array``` - highest and earliest clicks within period
+- **highest_click** ```Array``` - highest and/or earliest clicks within period
 - **invalid_ips** ```Array``` - All clicks with IP appearing more than 10 times
 - **hide_form** ```Boolean``` - Toggle JSON input form
 - **default_data** ```Array``` - current JSON data loaded

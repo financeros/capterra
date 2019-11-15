@@ -61,7 +61,7 @@ const checkIp = (data, period) => {
             period_clicks.push(item)
         }
 
-      period_clicks = period_clicks.sort((a, b) => b.timestamp - a.timestamp)
+      period_clicks = period_clicks.sort((a, b) => a.timestamp - b.timestamp)
 
     })
 
