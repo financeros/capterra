@@ -43,6 +43,8 @@ const checkIp = (data, period) => {
     var period_clicks = []
     var highest_click = []
     var invalid_ips = {}
+    
+    // use ip_count as lookup to counter IP appearance
     var ip_count = {}
 
     data.forEach(item => {

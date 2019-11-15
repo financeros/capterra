@@ -56,6 +56,7 @@ Ran all test suites related to changed files.
 - Creates **24** 1-hour periods
 - Filters Clicks data into 1-hour periods
 - Sorts Clicks by timestamp (earliest to latest)
+- Creates an IP Count Lookup table
 - Checks if most expensive click has an IP that appears more than 10 times
 - Finds only most expensive (maximum) click while traversing from earliest to latest
 - Allows download of valid Most Expensive Click (resultset.json)
