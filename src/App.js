@@ -1,26 +1,136 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Clicks from './components/clicks'
+import Display from './components/display'
+import Periods from './components/periods'
+import InputForm from './components/inputform'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const data = require('./data/clicks.json');
+const { getPeriodRange, createPeriodRanges, checkIp } = require('./helpers');
+
+
+class App extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {period: {}, period_clicks: [], highest_click: [], invalid_ips: [], hide_form: true, default_data: data}
+    }
+
+    // initialize display period to 1
+    componentDidMount(){
+        this.updatePeriod('1')
+    }
+
+     // update display data based on selected period
+     updatePeriod = (period) => {
+         period = getPeriodRange(period)
+
+         var { period_clicks, highest_click, invalid_ips } = checkIp(this.state.default_data, period)
+
+         this.setState({ period, period_clicks, highest_click, invalid_ips })
+     }
+
+     // open form to update JSON data
+     openForm = () => this.setState({hide_form: false})
+
+     // close form to update JSON data
+     closeForm = () => this.setState({hide_form: true})
+
+     // reset to original JSON data
+     reloadDefaultData = (data) => {
+         var default_data = data
+
+          var period = getPeriodRange("1")
+          var { period_clicks, highest_click, invalid_ips } = checkIp(default_data, period)
+
+          this.setState({ period, period_clicks, highest_click, invalid_ips, default_data })
+     }
+
+     // Submit form with new JSON
+     submitForm = (e, newjson) => {
+         e.preventDefault()
+         try {
+             var jsonObject = JSON.parse(newjson);
+             var default_data = jsonObject
+
+              var period = getPeriodRange("1")
+              var { period_clicks, highest_click, invalid_ips } = checkIp(default_data, period)
+
+             this.setState({ period, period_clicks, highest_click, invalid_ips, default_data })
+             this.closeForm()
+         } catch(e){
+             window.confirm('Invalid JSON')
+
+         }
+     }
+
+
+
+  render (){
+      var { period, period_clicks, highest_click, invalid_ips, hide_form, default_data } = this.state
+      return (
+        <div className="App">
+
+            <nav className={'navbar sticky-top navbar-dark bg-dark text-light'}>
+                <h4>Capterra Clicks</h4>
+                <span>
+                {
+                    (hide_form) ? (
+                        (default_data !== data) ? (
+                        <div className="col text-secondary">
+                            <button style={{cursor:'pointer'}} className="btn btn-outline-warning btn-sm m-2" onClick={() => this.reloadDefaultData(data)}>
+                                <i class="fa fa-undo"></i>
+                                &nbsp; Reset to Default JSON (clicks.json)
+                            </button>
+                            <button style={{cursor:'pointer'}} className="btn btn-outline-secondary btn-sm m-2" onClick={()=> this.openForm()}>
+                                <i className="fa fa-edit"></i>
+                                &nbsp; Edit JSON
+                            </button>
+                        </div>
+                        ) : (
+                            <div className="col text-light">
+                                <span>Using Default JSON (clicks.json)
+                                <button style={{cursor:'pointer'}} className="btn btn-outline-secondary btn-sm m-2" onClick={()=> this.openForm()}>
+                                    <i className="fa fa-edit"></i>
+                                    &nbsp; Edit JSON
+                                </button>
+                                </span>
+                            </div>
+                          )
+                    ) : null
+                }
+                </span>
+            </nav>
+            {
+                ( hide_form ) ? (
+                    <div className="container">
+                        <div className='row m-1 p-1'>
+                            <Periods periods={createPeriodRanges(24)} updatePeriod={this.updatePeriod} period={period}  />
+                        </div>
+
+                        <div className="row m-2 p-3">
+                            <div className={'col-md-12'}>
+                                <Display period={period} period_clicks={period_clicks} highest_click={highest_click} invalid_ips={invalid_ips} openForm={this.openForm} />
+                            </div>
+                        </div>
+
+                        <div className='row'>
+                            <Clicks clickdata={this.state.default_data} period_clicks={period_clicks} invalid_ips={invalid_ips} />
+                        </div>
+
+                    </div>
+                ):(
+                    <div className="container">
+                        <InputForm submitForm={this.submitForm} closeForm={this.closeForm} default_data={default_data} />
+                    </div>
+                )
+            }
+
+
+        </div>
+      );
+  }
 }
 
 export default App;

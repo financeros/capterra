@@ -1,68 +1,93 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Hassan Badru
+### Capterra - Expensive Click App
+This app allows user to view or download valid most Expensive clicks
 
-## Available Scripts
+## Libraries
+- [x] ReactJS - Lightweight & agnostic UI library with a component architecture
+- [x] JSON_Loader - for reading JSON string
+- [x] Moment - for better dates
+- [x] Bootstrap - for basic styling
+- [x] Font Awesome - for basic icons
+- [x] Jest - for basic testing
 
-In the project directory, you can run:
+## Install Dependencies
+Would install package.json modules
+```bash
+npm install
+```
 
-### `npm start`
+## Run Web App
+The Web app would run on [localhost:3000](http://localhost:3000/)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+npm run solution
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Run a production build
+```bash
+ npm run build
+ npm install -g serve
+ serve -s build
+ ```
 
-### `npm test`
+## Test App
+To run test suites:
+```bash
+npm run test
+```
+Sample test:
+```bash
+ PASS  src/App.test.js
+  ✓ renders without crashing (97ms)
+  ✓ check if timestamp belongs to period (29ms)
+  ✓ create period ranges (1ms)
+  ✓ check for invalid ips + highest clicks within period (23ms)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        1.075s
+Ran all test suites related to changed files.
+```
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Functionality
+- Extracts JSON data from file
+- Creates **24** 1-hour periods
+- Filters clicks based on 1-hour periods and sort by timestamp
+- Finds most expensive (and/or earliest click)
+- Checks if most expensive click has an IP that appears more than 10 times
+- Allows download of valid Most Expensive Click (resultset.json)
+- Allows and validates user inputted JSON string
+- Allows reset to origin JSON
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Main Components
+Used React Class & Function Components + React Hooks
+### <App />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### States
+- **period** ```Object``` - current period being viewed
+- **period_clicks** ```Array``` - total clicks within period
+- **highest_click** ```Array``` - highest and earliest clicks within period
+- **invalid_ips** ```Array``` - All clicks with IP appearing more than 10 times
+- **hide_form** ```Boolean``` - Toggle JSON input form
+- **default_data** ```Array``` - current JSON data loaded
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### <Display />
+- Shows all clicks within that period (sorted by timestamp)
+- Shows the most expensive click
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### <Periods />
+- Shows an navigation tab to any 24 hour period
+- (if user JSON) Refresh to default data
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![alt text](https://docs.google.com/uc?id=1cIe5aq5s08eLS_A5pXAKX6h5nwzaDMhJ "screenshot")
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### <Clicks />
+- Shows all valid, invalid clicks and their count
+![alt text](https://docs.google.com/uc?id=1RgBO8PLJ2czsFQ4AJ7vUbMmvW7u42mJM "screenshot")
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### <InputForm />
+- Updates data with JSON string via Text Box
+![alt text](https://docs.google.com/uc?id=1oJ5R8oE4jqucuSBPwsZ1pQRx9OQ6OA5H "screenshot")
