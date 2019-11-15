@@ -69,7 +69,7 @@ Used React Class & Function Components + React Hooks
 
 ### Display
 - Shows all clicks within that period (sorted by timestamp)
-- Shows the most expensive click
+- Shows the most expensive click (result set)
 - Shows 'No Valid Result' if no click exists or if click IP appears more than 10 times
 - Download button for resultset.json
 
