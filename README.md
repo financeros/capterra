@@ -63,31 +63,31 @@ Ran all test suites related to changed files.
 
 ## Main Components
 Used React Class & Function Components + React Hooks
-### <App />
+### App
+- Class component that initialize / manage entire app states
 
-#### States
+### Display
+- Shows all clicks within that period (sorted by timestamp)
+- Shows the most expensive click
+
+### Periods
+- Shows an navigation tab to any 24 hour period
+- (if user JSON) Refresh to default data
+
+![alt text](https://docs.google.com/uc?id=1cIe5aq5s08eLS_A5pXAKX6h5nwzaDMhJ "screenshot")
+
+### Clicks
+- Shows all valid, invalid clicks and their count
+![alt text](https://docs.google.com/uc?id=1RgBO8PLJ2czsFQ4AJ7vUbMmvW7u42mJM "screenshot")
+
+### InputForm
+- Updates data with JSON string via Text Box
+![alt text](https://docs.google.com/uc?id=1oJ5R8oE4jqucuSBPwsZ1pQRx9OQ6OA5H "screenshot")
+
+### App States
 - **period** ```Object``` - current period being viewed
 - **period_clicks** ```Array``` - total clicks within period
 - **highest_click** ```Array``` - highest and earliest clicks within period
 - **invalid_ips** ```Array``` - All clicks with IP appearing more than 10 times
 - **hide_form** ```Boolean``` - Toggle JSON input form
 - **default_data** ```Array``` - current JSON data loaded
-
-
-### <Display />
-- Shows all clicks within that period (sorted by timestamp)
-- Shows the most expensive click
-
-### <Periods />
-- Shows an navigation tab to any 24 hour period
-- (if user JSON) Refresh to default data
-
-![alt text](https://docs.google.com/uc?id=1cIe5aq5s08eLS_A5pXAKX6h5nwzaDMhJ "screenshot")
-
-### <Clicks />
-- Shows all valid, invalid clicks and their count
-![alt text](https://docs.google.com/uc?id=1RgBO8PLJ2czsFQ4AJ7vUbMmvW7u42mJM "screenshot")
-
-### <InputForm />
-- Updates data with JSON string via Text Box
-![alt text](https://docs.google.com/uc?id=1oJ5R8oE4jqucuSBPwsZ1pQRx9OQ6OA5H "screenshot")
