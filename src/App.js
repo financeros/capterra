@@ -48,8 +48,7 @@ class App extends Component {
      }
 
      // Submit form with new JSON
-     submitForm = (e, newjson) => {
-         e.preventDefault()
+     submitForm = (newjson) => {
          try {
              var jsonObject = JSON.parse(newjson);
              var default_data = jsonObject
@@ -80,7 +79,7 @@ class App extends Component {
                         (default_data !== data) ? (
                         <div className="col text-secondary">
                             <button style={{cursor:'pointer'}} className="btn btn-outline-warning btn-sm m-2" onClick={() => this.reloadDefaultData(data)}>
-                                <i class="fa fa-undo"></i>
+                                <i className="fa fa-undo"></i>
                                 &nbsp; Reset to Default JSON (clicks.json)
                             </button>
                             <button style={{cursor:'pointer'}} className="btn btn-outline-secondary btn-sm m-2" onClick={()=> this.openForm()}>
