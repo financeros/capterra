@@ -1,7 +1,7 @@
 import React from 'react';
 
-const downloadFile = (highest_click) => {
-    var highest_json = JSON.stringify(highest_click)
+const downloadFile = (expensive_clicks) => {
+    var highest_json = JSON.stringify(expensive_clicks)
     const blob = new Blob([highest_json], {type: "text/plain"});
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -59,7 +59,7 @@ const Display = props => {
                 <h5>Result</h5>
                 <i className="font-weight-lighter text-secondary">(Expensive Clicks)</i>
                 {
-                    (props.highest_click && props.highest_click.length > 0) ? (props.highest_click.map((click, id) => {
+                    (props.expensive_clicks && props.expensive_clicks.length > 0) ? (props.expensive_clicks.map((click, id) => {
                         return (
                             <div key={id} className="p-2 m-2">
                                 <div>
@@ -74,8 +74,8 @@ const Display = props => {
 
                 }
                 {
-                    (props.highest_click  && props.highest_click.length > 0) ? (
-                        <div style={{cursor: 'pointer'}} onClick={() => downloadFile(props.highest_click)} className="btn btn-outline-primary">Download resultset.json</div>
+                    (props.expensive_clicks  && props.expensive_clicks.length > 0) ? (
+                        <div style={{cursor: 'pointer'}} onClick={() => downloadFile(props.expensive_clicks)} className="btn btn-outline-primary">Download resultset.json</div>
                     ) : null
                 }
             </div>

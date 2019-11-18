@@ -14,7 +14,7 @@ class App extends Component {
 
     constructor(props){
         super(props);
-        this.state = {period: {}, period_clicks: [], highest_click: [], invalid_ips: [], hide_form: true, default_data: data}
+        this.state = {period: {}, period_clicks: [], expensive_clicks: [], invalid_ips: [], hide_form: true, default_data: data}
     }
 
     // initialize display period to 1
@@ -26,9 +26,9 @@ class App extends Component {
      updatePeriod = (period) => {
          period = getPeriodRange(period)
 
-         var { period_clicks, highest_click, invalid_ips } = checkClicks(this.state.default_data, period)
+         var { period_clicks, expensive_clicks, invalid_ips } = checkClicks(this.state.default_data, period)
 
-         this.setState({ period, period_clicks, highest_click, invalid_ips })
+         this.setState({ period, period_clicks, expensive_clicks, invalid_ips })
      }
 
      // open form to update JSON data
@@ -41,10 +41,10 @@ class App extends Component {
      reloadDefaultData = (data) => {
          var default_data = data
 
-          var period = getPeriodRange("1")
-          var { period_clicks, highest_click, invalid_ips } = checkClicks(default_data, period)
+          // var period = getPeriodRange("1")
+          var { period_clicks, expensive_clicks, invalid_ips } = checkClicks(default_data, this.state.period)
 
-          this.setState({ period, period_clicks, highest_click, invalid_ips, default_data })
+          this.setState({ period_clicks, expensive_clicks, invalid_ips, default_data })
      }
 
      // Submit form with new JSON
@@ -54,9 +54,9 @@ class App extends Component {
              var default_data = jsonObject
 
               var period = getPeriodRange("1")
-              var { period_clicks, highest_click, invalid_ips } = checkClicks(default_data, period)
+              var { period_clicks, expensive_clicks, invalid_ips } = checkClicks(default_data, period)
 
-             this.setState({ period, period_clicks, highest_click, invalid_ips, default_data })
+             this.setState({ period, period_clicks, expensive_clicks, invalid_ips, default_data })
              this.closeForm()
          } catch(e){
              window.confirm('Invalid JSON')
@@ -67,7 +67,7 @@ class App extends Component {
 
 
   render (){
-      var { period, period_clicks, highest_click, invalid_ips, hide_form, default_data } = this.state
+      var { period, period_clicks, expensive_clicks, invalid_ips, hide_form, default_data } = this.state
       if (hide_form === true ) {
           return (
               <div className="App">
@@ -107,7 +107,7 @@ class App extends Component {
 
                       <div className="row m-2 p-3">
                           <div className={'col-md-12'}>
-                              <Display period={period} period_clicks={period_clicks} highest_click={highest_click} invalid_ips={invalid_ips} openForm={this.openForm} />
+                              <Display period={period} period_clicks={period_clicks} expensive_clicks={expensive_clicks} invalid_ips={invalid_ips} openForm={this.openForm} />
                           </div>
                       </div>
 

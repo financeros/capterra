@@ -91,7 +91,7 @@ Used React Class & Function Components + React Hooks
 ### App States
 - **period** ```Object``` - current period being viewed
 - **period_clicks** ```Array``` - total clicks within period
-- **highest_click** ```Array``` - highest and/or earliest clicks within period
+- **expensive_clicks** ```Array``` - highest and/or earliest clicks within period
 - **invalid_ips** ```Array``` - All clicks with IP appearing more than 10 times
 - **hide_form** ```Boolean``` - Toggle JSON input form
 - **default_data** ```Array``` - current JSON data loaded

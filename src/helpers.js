@@ -41,7 +41,7 @@ const hasClickPeriod = (timestamp, min, max) => {
 // Sort and find most expensive click with IP occurence <= 10
 const checkClicks = (data, period) => {
     var period_clicks = []
-    var highest_click = []
+    var expensive_clicks = []
     var invalid_ips = {}
 
     // use ip_count as lookup to counter IP appearance
@@ -75,18 +75,18 @@ const checkClicks = (data, period) => {
             var c = period_clicks[click]
             if (c.amount > max_amt && ip_count[c.ip] <= 10){
                 max_amt = c.amount
-                highest_click = [c]
+                expensive_clicks = [c]
                 expensive_ips.push(c.ip)
             } else if (c.amount === max_amt && ip_count[c.ip] <= 10 && !expensive_ips.includes(c.ip)){
-                highest_click.push(c)
+                expensive_clicks.push(c)
             }
         }
 
     } else if (period_clicks.length === 1 && ip_count[period_clicks[0].ip] <= 10) {
-        highest_click = period_clicks
+        expensive_clicks = period_clicks
     }
 
-    return { period_clicks, highest_click, invalid_ips }
+    return { period_clicks, expensive_clicks, invalid_ips }
 }
 
 
