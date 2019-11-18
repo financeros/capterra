@@ -66,11 +66,17 @@ const Display = props => {
                                     <div className="badge badge-success m-1 w-25"> {click.ip} </div>
                                     <div className="badge badge-light m-1 w-25"> {click.timestamp} </div>
                                 </div>
-                                <div style={{cursor: 'pointer'}} onClick={() => downloadFile(props.highest_click)} className="btn btn-outline-primary m-1">Download resultset.json</div>
+
                             </div>
                         )
                     })
                 ) :  (<i className="text-danger m-2"> No Valid Result </i>)
+
+                }
+                {
+                    (props.highest_click  && props.highest_click.length > 0) ? (
+                        <div style={{cursor: 'pointer'}} onClick={() => downloadFile(props.highest_click)} className="btn btn-outline-primary">Download resultset.json</div>
+                    ) : null
                 }
             </div>
         </div>

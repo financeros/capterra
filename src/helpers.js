@@ -39,11 +39,11 @@ const hasClickPeriod = (timestamp, min, max) => {
 
 
 // Sort and find most expensive click with IP occurence <= 10
-const checkIp = (data, period) => {
+const checkClicks = (data, period) => {
     var period_clicks = []
     var highest_click = []
     var invalid_ips = {}
-    
+
     // use ip_count as lookup to counter IP appearance
     var ip_count = {}
 
@@ -70,11 +70,15 @@ const checkIp = (data, period) => {
 
     if (period_clicks.length > 1){
         var max_amt = 0
+        var expensive_ips = []
         for (var click in period_clicks){
             var c = period_clicks[click]
             if (c.amount > max_amt && ip_count[c.ip] <= 10){
                 max_amt = c.amount
                 highest_click = [c]
+                expensive_ips.push(c.ip)
+            } else if (c.amount === max_amt && ip_count[c.ip] <= 10 && !expensive_ips.includes(c.ip)){
+                highest_click.push(c)
             }
         }
 
@@ -87,4 +91,4 @@ const checkIp = (data, period) => {
 
 
 
-module.exports = { convertHoursToTime, getPeriodRange, createPeriodRanges, checkIp, hasClickPeriod }
+module.exports = { convertHoursToTime, getPeriodRange, createPeriodRanges, checkClicks, hasClickPeriod }

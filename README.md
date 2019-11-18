@@ -58,7 +58,7 @@ Ran all test suites related to changed files.
 - Sorts Clicks by timestamp (earliest to latest)
 - Creates an IP Count Lookup table
 - Checks if most expensive click has an IP that appears more than 10 times
-- Searches for a more expensive click (i.e. if click amount is greater than current maximum) while traversing from earliest to latest
+- Searches for expensive clicks (i.e. higher click amounts with a different IP) while traversing from earliest to latest click
 - Allows download of valid Most Expensive Click (resultset.json)
 - Allows and validates user inputted JSON data
 - Allows reset of app data to JSON file (clicks.json)
