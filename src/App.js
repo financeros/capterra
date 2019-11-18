@@ -40,9 +40,7 @@ class App extends Component {
      // reset to original JSON data
      reloadDefaultData = (data) => {
          var default_data = data
-
-          // var period = getPeriodRange("1")
-          var { period_clicks, expensive_clicks, invalid_ips } = checkClicks(default_data, this.state.period)
+         var { period_clicks, expensive_clicks, invalid_ips } = checkClicks(default_data, this.state.period)
 
           this.setState({ period_clicks, expensive_clicks, invalid_ips, default_data })
      }
@@ -53,10 +51,9 @@ class App extends Component {
              var jsonObject = JSON.parse(newjson);
              var default_data = jsonObject
 
-              var period = getPeriodRange("1")
-              var { period_clicks, expensive_clicks, invalid_ips } = checkClicks(default_data, period)
+              var { period_clicks, expensive_clicks, invalid_ips } = checkClicks(default_data, this.state.period)
 
-             this.setState({ period, period_clicks, expensive_clicks, invalid_ips, default_data })
+             this.setState({ period_clicks, expensive_clicks, invalid_ips, default_data })
              this.closeForm()
          } catch(e){
              window.confirm('Invalid JSON')

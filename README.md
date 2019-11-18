@@ -78,7 +78,7 @@ Used React Class & Function Components + React Hooks
 - Shows an navigation tab to any 24 hour period
 - (if user JSON) Refresh to default data
 
-![alt text](https://docs.google.com/uc?id=1cIe5aq5s08eLS_A5pXAKX6h5nwzaDMhJ "screenshot1")
+![alt text](https://docs.google.com/uc?id=16fBmOxwOE6TuSJ4Um2J6KkaMiEad7MpH "screenshot1")
 
 ### Clicks
 - Shows all valid, invalid clicks and their count
