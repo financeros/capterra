@@ -10,19 +10,24 @@ This app allows user to view or download valid most Expensive clicks
 - [x] Font Awesome - for basic icons
 - [x] Jest - for basic testing
 
-## Run Solution
-While inside root directory, run the command:
+## Solution
+While within root directory (solution_Hassan_Badru)
 
 ### Install Dependencies
 This would install the necessary package.json modules
 ```bash
 npm install
 ```
-Then,
+### Run exercise solution
 ```bash
 npm run solution
 ```
 This solution would produce the file ```resultset.json``` and add this file to **code_output** folder within the root directory
+
+```
+$ File -> resultset.json has been saved!
+Location -> /path/to/solution_Hassan_Badru/code_output/result.json
+```
 
 ```
 solution_Hassan_Badru
@@ -73,17 +78,18 @@ npm run test
 ```
 Sample test:
 ```bash
- PASS  src/App.test.js
-  ✓ renders without crashing (97ms)
-  ✓ check if timestamp belongs to period (29ms)
-  ✓ create period ranges (1ms)
-  ✓ check for invalid ips + highest clicks within period (23ms)
+PASS  src/App.test.js
+ ✓ renders without crashing (271ms)
+ ✓ check if timestamp belongs to period (4ms)
+ ✓ create period ranges (1ms)
+ ✓ check for invalid ips + most expensive clicks within period (10ms)
+ ✓ check resultset output (104ms)
 
 Test Suites: 1 passed, 1 total
-Tests:       4 passed, 4 total
+Tests:       5 passed, 5 total
 Snapshots:   0 total
-Time:        1.075s
-Ran all test suites related to changed files.
+Time:        2.209s
+Ran all test suites.
 ```
 
 
