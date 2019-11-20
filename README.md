@@ -11,6 +11,19 @@ This app allows user to view or download valid most Expensive clicks
 - [x] Jest - for basic testing
 
 ## Run Solution
+While inside root directory, run the command:
+
+### Install Dependencies
+This would install the necessary package.json modules
+```bash
+npm install
+```
+Then,
+```bash
+npm run solution
+```
+This solution would produce the file ```resultset.json``` and add this file to **code_output** folder within the root directory
+
 ```
 solution_Hassan_Badru
     ├── src
@@ -37,28 +50,16 @@ solution_Hassan_Badru
     └── **code_output**
         └── resultset.json
 ```
-While inside root directory, run the command:
-
-### Install Dependencies
-This would install the necessary package.json modules
-```bash
-npm install
-```
-Then,
-```bash
-npm run solution
-```
-This solution would produce the file ```resultset.json``` and add this file to **code_output** folder within the root directory
 
 
-### ReactJS App
-The Web app would run on [localhost:3000](http://localhost:3000/)
+## Run Web App
+The React App would run on [localhost:3000](http://localhost:3000/) with the command:
 
 ```bash
 npm run solution-app
 ```
 
-Run a production build
+### To run a production build
 ```bash
  npm run build
  npm install -g serve
