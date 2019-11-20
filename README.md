@@ -119,7 +119,7 @@ Ran all test suites.
 - Allows and validates user inputted JSON data
 - Allows reset of app data to JSON file (clicks.json)
 
-### Using a custom (helpers) module
+### Using a custom-created (helpers) module
 - ```convertHoursToTime = (hour)``` - takes in a period number and returns the maximum hour mark (format -> HH:mm:ss)
 - ```getClickPeriod(p)``` - takes in a period number and returns a minimum - maximum time range (click period)
 - ```createClickPeriods(nPeriods)``` - given number of periods (24), creates a click period for each 24 hours
