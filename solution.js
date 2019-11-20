@@ -16,7 +16,7 @@ const solution = (data) => {
           console.log(`there was an error ${err} while saving`)
           return false
       }
-      console.log('resultset.json has been saved!');
+      console.log(`File -> resultset.json has been saved! \nLocation: ${process.cwd()}/code_output/resultset.json`);
       return true
     });
 }

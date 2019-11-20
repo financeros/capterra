@@ -17,11 +17,10 @@ npm install
 ```
 
 ## Run Solution
-### Solution script
 ```bash
 npm run solution
 ```
-This solution would produce the file 'resultset.json' and that is added to '/code_output' folder
+This solution would produce the file ```resultset.json``` and add this file to **code_output** folder within the root directory
 
 ### ReactJS App
 The Web app would run on [localhost:3000](http://localhost:3000/)

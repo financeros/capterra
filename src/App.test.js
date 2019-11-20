@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { hasClickPeriod, getPeriodRange, checkIps } from './helpers';
+import { hasClickPeriod, getPeriodRange, checkIps, createResultset } from './helpers';
 
 const test_data = require('./data/test_clicks.json');
 
@@ -23,11 +23,19 @@ it('create period ranges',()=> {
     expect(getPeriodRange(19)).toEqual({'period':'19', 'min':'18:00:00', 'max': '19:00:00'})
 })
 
-it('check for invalid ips + highest clicks within period',()=> {
+it('check for invalid ips + most expensive clicks within period',()=> {
     expect(checkIps(test_data, getPeriodRange(5))).toEqual({"expensive_clicks": [], "invalid_ips": {"22.22.22.22": 12}, "period_clicks": []});
     expect(checkIps(test_data, getPeriodRange(19))).toEqual({
                                                         "expensive_clicks": [{"amount": 9, "ip": "55.55.55.55", "timestamp": "3/11/2016 18:19:20"}],
                                                         "invalid_ips": {"22.22.22.22": 12},
                                                         "period_clicks": [{"amount": 9, "ip": "55.55.55.55", "timestamp": "3/11/2016 18:19:20"}]
                                                     });
+})
+
+
+it('check resultset output',()=> {
+    expect(createResultset(test_data)).toEqual([{"amount": 8, "ip": "55.55.55.55", "timestamp": "3/11/2016 13:02:40"},
+                                                {"amount": 8, "ip": "44.44.44.44", "timestamp": "3/11/2016 13:02:55"},
+                                                {"amount": 9, "ip": "55.55.55.55", "timestamp": "3/11/2016 18:19:20"}
+                                                ]);
 })
