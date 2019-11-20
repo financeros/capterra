@@ -10,19 +10,9 @@ This app allows user to view or download valid most Expensive clicks
 - [x] Font Awesome - for basic icons
 - [x] Jest - for basic testing
 
-## Install Dependencies
-Would install package.json modules
-```bash
-npm install
-```
-
 ## Run Solution
-```bash
-npm run solution
 ```
-This solution would produce the file ```resultset.json``` and add this file to **code_output** folder within the root directory
-
-```solution_Hassan_Badru
+solution_Hassan_Badru
     ├── src
     │   ├── components
     │   │   ├── clicks.js
@@ -47,6 +37,19 @@ This solution would produce the file ```resultset.json``` and add this file to *
     └── **code_output**
         └── resultset.json
 ```
+While inside root directory, run the command:
+
+### Install Dependencies
+This would install the necessary package.json modules
+```bash
+npm install
+```
+Then,
+```bash
+npm run solution
+```
+This solution would produce the file ```resultset.json``` and add this file to **code_output** folder within the root directory
+
 
 ### ReactJS App
 The Web app would run on [localhost:3000](http://localhost:3000/)
