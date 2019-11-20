@@ -27,7 +27,7 @@ Note: If a **code_output** folder doesn't already exist, one would be created
 
 ```
 $ File -> resultset.json has been saved!
-Location -> /path/to/solution_Hassan_Badru/code_output/result.json
+Location -> /path/to/solution_Hassan_Badru/code_output/resultset.json
 ```
 
 ```
