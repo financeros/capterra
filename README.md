@@ -22,7 +22,7 @@ npm run solution
 ```
 This solution would produce the file ```resultset.json``` and add this file to **code_output** folder within the root directory
 
-solution_Hassan_Badru
+```solution_Hassan_Badru
     ├── src
     │   ├── components
     │   │   ├── clicks.js
@@ -44,8 +44,9 @@ solution_Hassan_Badru
     ├── README.md
     ├── package.json
     ├── package-lock.json
-    └── **code_output
-        └── resultset.json**
+    └── **code_output**
+        └── resultset.json
+```
 
 ### ReactJS App
 The Web app would run on [localhost:3000](http://localhost:3000/)
