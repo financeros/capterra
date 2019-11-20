@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { hasClickPeriod, getPeriodRange, checkClicks } from './helpers';
+import { hasClickPeriod, getPeriodRange, checkIps } from './helpers';
 
-const data = require('./data/clicks.json');
+const test_data = require('./data/test_clicks.json');
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -24,8 +24,8 @@ it('create period ranges',()=> {
 })
 
 it('check for invalid ips + highest clicks within period',()=> {
-    expect(checkClicks(data, getPeriodRange(5))).toEqual({"expensive_clicks": [], "invalid_ips": {"22.22.22.22": 12}, "period_clicks": []});
-    expect(checkClicks(data, getPeriodRange(19))).toEqual({
+    expect(checkIps(test_data, getPeriodRange(5))).toEqual({"expensive_clicks": [], "invalid_ips": {"22.22.22.22": 12}, "period_clicks": []});
+    expect(checkIps(test_data, getPeriodRange(19))).toEqual({
                                                         "expensive_clicks": [{"amount": 9, "ip": "55.55.55.55", "timestamp": "3/11/2016 18:19:20"}],
                                                         "invalid_ips": {"22.22.22.22": 12},
                                                         "period_clicks": [{"amount": 9, "ip": "55.55.55.55", "timestamp": "3/11/2016 18:19:20"}]

@@ -7,14 +7,15 @@ import InputForm from './components/inputform'
 
 
 const data = require('./data/clicks.json');
-const { getPeriodRange, createPeriodRanges, checkClicks } = require('./helpers');
+const { getPeriodRange, createTimeframes, checkIps, createResultset } = require('./helpers');
 
 
 class App extends Component {
 
     constructor(props){
         super(props);
-        this.state = {period: {}, period_clicks: [], expensive_clicks: [], invalid_ips: [], hide_form: true, default_data: data}
+        var resultset = createResultset(data)
+        this.state = {period: {}, period_clicks: [], expensive_clicks: [], invalid_ips: [], resultset, hide_form: true, default_data: data}
     }
 
     // initialize display period to 1
@@ -26,8 +27,7 @@ class App extends Component {
      updatePeriod = (period) => {
          period = getPeriodRange(period)
 
-         var { period_clicks, expensive_clicks, invalid_ips } = checkClicks(this.state.default_data, period)
-
+         var { period_clicks, expensive_clicks, invalid_ips } = checkIps(this.state.default_data, period)
          this.setState({ period, period_clicks, expensive_clicks, invalid_ips })
      }
 
@@ -38,12 +38,28 @@ class App extends Component {
      closeForm = () => this.setState({hide_form: true})
 
      // reset to original JSON data
-     reloadDefaultData = (data) => {
+     reloadDefaultData = data => {
          var default_data = data
-         var { period_clicks, expensive_clicks, invalid_ips } = checkClicks(default_data, this.state.period)
+         var { period_clicks, expensive_clicks, invalid_ips } = checkIps(default_data, this.state.period)
+         var resultset = createResultset(this.state.default_data)
 
-          this.setState({ period_clicks, expensive_clicks, invalid_ips, default_data })
+          this.setState({ period_clicks, expensive_clicks, invalid_ips, resultset, default_data })
      }
+
+
+
+      downloadFile = (json_string, filename) => {
+         json_string = JSON.stringify(json_string)
+         const blob = new Blob([json_string], {type: "application/json"});
+         const url = URL.createObjectURL(blob);
+         const link = document.createElement('a');
+
+         link.download = filename + '.json';
+         link.href = url;
+         link.click()
+     }
+
+
 
      // Submit form with new JSON
      submitForm = (newjson) => {
@@ -51,9 +67,10 @@ class App extends Component {
              var jsonObject = JSON.parse(newjson);
              var default_data = jsonObject
 
-              var { period_clicks, expensive_clicks, invalid_ips } = checkClicks(default_data, this.state.period)
+              var { period_clicks, expensive_clicks, invalid_ips } = checkIps(default_data, this.state.period)
+              var resultset = createResultset(this.state.default_data)
 
-             this.setState({ period_clicks, expensive_clicks, invalid_ips, default_data })
+             this.setState({ period_clicks, expensive_clicks, invalid_ips, resultset, default_data })
              this.closeForm()
          } catch(e){
              window.confirm('Invalid JSON')
@@ -64,13 +81,13 @@ class App extends Component {
 
 
   render (){
-      var { period, period_clicks, expensive_clicks, invalid_ips, hide_form, default_data } = this.state
+      var { period, period_clicks, expensive_clicks, invalid_ips, hide_form, resultset, default_data } = this.state
       if (hide_form === true ) {
           return (
               <div className="App">
                   <nav className={'navbar sticky-top navbar-dark bg-dark text-light'}>
                       <h4>Capterra Clicks</h4>
-                      <span>
+                      <span className="row p-1">
                       {
                               (default_data !== data) ? (
                               <div className="col text-secondary">
@@ -94,17 +111,21 @@ class App extends Component {
                                   </div>
                                 )
                       }
+                      <button style={{cursor:'pointer'}} className="btn btn-info btn-sm m-2" onClick={()=> this.downloadFile(resultset, 'resultset')}>
+                          <i className="fa fa-edit"></i>
+                          &nbsp; Download resultset.json
+                      </button>
                       </span>
                   </nav>
 
                   <div className="container">
                       <div className='row m-1 p-1'>
-                          <Periods periods={createPeriodRanges(24)} updatePeriod={this.updatePeriod} period={period}  />
+                          <Periods periods={createTimeframes(24)} updatePeriod={this.updatePeriod} period={period}  />
                       </div>
 
                       <div className="row m-2 p-3">
                           <div className={'col-md-12'}>
-                              <Display period={period} period_clicks={period_clicks} expensive_clicks={expensive_clicks} invalid_ips={invalid_ips} openForm={this.openForm} />
+                              <Display period={period} period_clicks={period_clicks} expensive_clicks={expensive_clicks} invalid_ips={invalid_ips} openForm={this.openForm} downloadFile={this.downloadFile} />
                           </div>
                       </div>
 

@@ -11,7 +11,7 @@ const getPeriodRange = (p) => {
 }
 
 // create all timeframes given number of periods
-const createPeriodRanges = (nPeriods) => {
+const createTimeframes = (nPeriods) => {
     var periods = {};
     for (var x = 1; x <= nPeriods; x++) {
       periods[x] = getPeriodRange(x)
@@ -37,17 +37,12 @@ const hasClickPeriod = (timestamp, min, max) => {
     return false
 }
 
-
-// Sort and find most expensive click with IP occurence <= 10
-const checkClicks = (data, period) => {
+const groupClicks = (json_data, period) => {
     var period_clicks = []
-    var expensive_clicks = []
     var invalid_ips = {}
+    var ip_count = {} // use ip_count as lookup to counter IP appearance
 
-    // use ip_count as lookup to counter IP appearance
-    var ip_count = {}
-
-    data.forEach(item => {
+    json_data.forEach(item => {
         var { ip, timestamp } = item
         if (ip_count[ip]){
             ip_count[ip] += 1
@@ -62,33 +57,50 @@ const checkClicks = (data, period) => {
         if (hasClickPeriod(timestamp, min, max)){
             period_clicks.push(item)
         }
-
-      period_clicks = period_clicks.sort((a, b) => a.timestamp - b.timestamp)
-
     })
+    return { period_clicks, invalid_ips }
+ }
 
 
-    if (period_clicks.length > 1){
-        var max_amt = 0
-        var expensive_ips = []
-        for (var click in period_clicks){
-            var c = period_clicks[click]
-            if (c.amount > max_amt && ip_count[c.ip] <= 10){
-                max_amt = c.amount
-                expensive_clicks = [c]
-                expensive_ips.push(c.ip)
-            } else if (c.amount === max_amt && ip_count[c.ip] <= 10 && !expensive_ips.includes(c.ip)){
-                expensive_clicks.push(c)
+// Sort and find most expensive click with IP occurence <= 10
+const checkIps = (json_data, period) => {
+
+    var { period_clicks, invalid_ips } = groupClicks(json_data, period)
+    var expensive_clicks = []
+
+    // sort clicks by timestamp
+    period_clicks.sort((a, b) => a.timestamp - b.timestamp)
+
+    if (period_clicks.length > 0){
+        for (var c in period_clicks){
+            let click = period_clicks[c]
+            var clickIndex = expensive_clicks.findIndex( c => c.ip === click.ip ) // find duplicate click
+            var is_higher = false
+            var is_valid_ip = !invalid_ips[click.ip]
+
+            if (clickIndex >= 0) {
+                is_higher = click.amount > expensive_clicks[clickIndex].amount
+                expensive_clicks[clickIndex] = (is_higher) ? click : expensive_clicks[clickIndex]
+            } else if (is_valid_ip && clickIndex === -1) {
+                expensive_clicks.push(click)
             }
         }
 
-    } else if (period_clicks.length === 1 && ip_count[period_clicks[0].ip] <= 10) {
-        expensive_clicks = period_clicks
     }
 
     return { period_clicks, expensive_clicks, invalid_ips }
 }
 
+const createResultset = (data) => {
+    var timeframes = createTimeframes(24)
+    var resultset = []
+    for (var period in timeframes){
+        var expensive_clicks = checkIps(data, timeframes[period]).expensive_clicks
+        resultset.push(...expensive_clicks)
+    }
+
+    return resultset
+}
 
 
-module.exports = { convertHoursToTime, getPeriodRange, createPeriodRanges, checkClicks, hasClickPeriod }
+module.exports = { convertHoursToTime, getPeriodRange, createTimeframes, checkIps, hasClickPeriod, createResultset }

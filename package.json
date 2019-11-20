@@ -10,7 +10,8 @@
     "react-scripts": "3.2.0"
   },
   "scripts": {
-    "solution": "react-scripts start",
+    "solution_app": "react-scripts start",
+    "solution": "node solution.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

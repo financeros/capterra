@@ -1,16 +1,5 @@
 import React from 'react';
 
-const downloadFile = (expensive_clicks) => {
-    var highest_json = JSON.stringify(expensive_clicks)
-    const blob = new Blob([highest_json], {type: "text/plain"});
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-
-    link.download = 'resultset.json';
-    link.href = url;
-    link.click()
-}
-
 const Display = props => {
 
   return (
@@ -75,7 +64,7 @@ const Display = props => {
                 }
                 {
                     (props.expensive_clicks  && props.expensive_clicks.length > 0) ? (
-                        <div style={{cursor: 'pointer'}} onClick={() => downloadFile(props.expensive_clicks)} className="btn btn-outline-primary">Download resultset.json</div>
+                        <div style={{cursor: 'pointer'}} onClick={() => props.downloadFile(props.expensive_clicks, 'periodset_' + props.period.period)} className="btn btn-outline-primary btn-sm">Download periodset_{props.period.period}.json</div>
                     ) : null
                 }
             </div>

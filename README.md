@@ -16,11 +16,17 @@ Would install package.json modules
 npm install
 ```
 
+## Run Solution Script
+
+```bash
+npm run solution
+```
+
 ## Run Web App
 The Web app would run on [localhost:3000](http://localhost:3000/)
 
 ```bash
-npm run solution
+npm run solution_app
 ```
 
 Run a production build
@@ -54,12 +60,21 @@ Ran all test suites related to changed files.
 ## Design
 - Extracts JSON data from file (clicks.json)
 - Creates **24** 1-hour periods
-- Filters Clicks data into 1-hour periods
-- Sorts Clicks by timestamp (earliest to latest)
+- Groups Clicks data into 1-hour periods
 - Creates an IP Count Lookup table
-- Checks if most expensive click has an IP that appears more than 10 times
-- Searches for expensive clicks (i.e. higher click amounts with a different IP) while traversing from earliest to latest click
-- Allows download of valid Most Expensive Click (resultset.json)
+- Creates an Invalid IP Lookup table
+- Sorts Clicks by timestamp (earliest to latest)
+- Traverses from earliest to latest click, searching higher click amounts for Duplicate Clicks
+- Checks if IP address is valid (i.e. IP appears at most 10 times)
+- Checks if Duplicate Click exists for period
+- If Duplicate Click doesn't exist, adds click to result set
+- If Duplicate Click exists, compares click amounts and keeps more expensive click in result set
+- Add new click if not existing, else compare click amount and keep higher of two clicks
+- Produces a resultset.json for each IP within each one-hour periods
+- Stores resultset.json in root folder 'code_output'
+### Additional Web App Features
+- Allows view of clicks per period
+- Allows download of valid Most Expensive Clicks per period
 - Allows and validates user inputted JSON data
 - Allows reset of app data to JSON file (clicks.json)
 
@@ -93,5 +108,6 @@ Used React Class & Function Components + React Hooks
 - **period_clicks** ```Array``` - total clicks within period
 - **expensive_clicks** ```Array``` - highest and/or earliest clicks within period
 - **invalid_ips** ```Array``` - All clicks with IP appearing more than 10 times
+- **resultset** ```Array``` - Result set that includes each valid clicks/IPs within each one-hour period
 - **hide_form** ```Boolean``` - Toggle JSON input form
 - **default_data** ```Array``` - current JSON data loaded
