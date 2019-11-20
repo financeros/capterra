@@ -16,17 +16,18 @@ Would install package.json modules
 npm install
 ```
 
-## Run Solution Script
-
+## Run Solution
+### Solution script
 ```bash
 npm run solution
 ```
+This solution would produce the file 'resultset.json' and that is added to '/code_output' folder
 
-## Run Web App
+### ReactJS App
 The Web app would run on [localhost:3000](http://localhost:3000/)
 
 ```bash
-npm run solution_app
+npm run solution-app
 ```
 
 Run a production build
@@ -59,8 +60,8 @@ Ran all test suites related to changed files.
 
 ## Design
 - Extracts JSON data from file (clicks.json)
-- Creates **24** 1-hour periods
-- Groups Clicks data into 1-hour periods
+- Creates **24** one-hour periods
+- Groups Clicks data into one-hour periods
 - Creates an IP Count Lookup table
 - Creates an Invalid IP Lookup table
 - Sorts Clicks by timestamp (earliest to latest)
@@ -68,9 +69,9 @@ Ran all test suites related to changed files.
 - Checks if IP address is valid (i.e. IP appears at most 10 times)
 - Checks if Duplicate Click exists for period
 - If Duplicate Click doesn't exist, adds click to result set
-- If Duplicate Click exists, compares click amounts and keeps more expensive click in result set
-- Add new click if not existing, else compare click amount and keep higher of two clicks
-- Produces a resultset.json for each IP within each one-hour periods
+- If Duplicate Click exists, compares click amounts for similar IP and only adds the more expensive click to result set
+- Concatenates array of result set for all one-hour periods
+- Produces a resultset.json file from resultset array
 - Stores resultset.json in root folder 'code_output'
 ### Additional Web App Features
 - Allows view of clicks per period
@@ -90,7 +91,7 @@ Used React Class & Function Components + React Hooks
 - Download button for resultset.json
 
 ### Periods
-- Shows an navigation tab to any 24 hour period
+- Shows an navigation tab to each 24 hour period
 - (if user JSON) Refresh to default data
 
 ![alt text](https://docs.google.com/uc?id=16fBmOxwOE6TuSJ4Um2J6KkaMiEad7MpH "screenshot1")
