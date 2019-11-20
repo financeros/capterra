@@ -123,10 +123,10 @@ Ran all test suites.
 - ```convertHoursToTime = (hour)``` - takes in a period number and returns the maximum hour mark (format -> HH:mm:ss)
 - ```getClickPeriod(p)``` - takes in a period number and returns a minimum - maximum time range (click period)
 - ```createClickPeriods(nPeriods)``` - given number of periods (24), creates a click period for each 24 hours
-- ```hasClickPeriod(timestamp, min, max) ``` - checks if timestamp is with period
+- ```hasClickPeriod(timestamp, min, max) ``` - checks if timestamp is within click period
 - ```groupClicks(json_data, period)``` - add clicks that belong to specific click periods
 - ```checkIps(json_data, period)``` - check if all click IPs within the period are valid, adds expensive clicks (valid / highest / earliest) to period result
-- ```createResultset(json_data)``` - Concatenates final results set from all periods
+- ```createResultset(json_data)``` - Concatenates final results set from all click periods
 
 ### Assumptions
 - Click timestamp Format -> ```MM/DD/YYYY HH:mm:ss```
