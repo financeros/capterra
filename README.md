@@ -22,7 +22,8 @@ npm install
 ```bash
 npm run solution
 ```
-This solution would produce the file ```resultset.json``` and add this file to **code_output** folder within the root directory
+This solution would produce the file ```resultset.json``` and add this file to **code_output** folder within the root directory.
+Note: If a **code_output** folder doesn't already exist, one would be created
 
 ```
 $ File -> resultset.json has been saved!
@@ -52,7 +53,7 @@ solution_Hassan_Badru
     ├── README.md
     ├── package.json
     ├── package-lock.json
-    └── **code_output**
+    └── code_output
         └── resultset.json
 ```
 
@@ -118,16 +119,18 @@ Ran all test suites.
 Used React Class & Function Components + React Hooks
 ### App
 - Class component that initialize / manage entire app states
+- Download button for resultset.json
+- Shows toggle button to open user inputted JSON form 
+- (if user inputted JSON), allow Refresh of data to default
 
 ### Display
 - Shows all clicks within that period (sorted by timestamp)
-- Shows the most expensive click (result set)
+- Shows the most expensive clicks for that period (period set)
 - Shows 'No Valid Result' if no click exists or if click IP appears more than 10 times
-- Download button for resultset.json
+- Download button for periodset_#.json
 
 ### Periods
 - Shows an navigation tab to each 24 hour period
-- (if user JSON) Refresh to default data
 
 ![alt text](https://docs.google.com/uc?id=16fBmOxwOE6TuSJ4Um2J6KkaMiEad7MpH "screenshot1")
 
