@@ -5,13 +5,13 @@ This app allows user to view or download valid most Expensive clicks
 ## Libraries
 - [x] ReactJS - Lightweight & agnostic UI library with a component architecture
 - [x] JSON_Loader - for reading JSON string
-- [x] Moment - for better dates
+- [x] Moment - for working better with date/time
 - [x] Bootstrap - for basic styling
 - [x] Font Awesome - for basic icons
 - [x] Jest - for basic testing
 
 ## Solution
-While within root directory (solution_Hassan_Badru)
+While within root directory (i.e. solution_Hassan_Badru)
 
 ### Install Dependencies
 This would install the necessary package.json modules

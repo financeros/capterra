@@ -112,7 +112,7 @@ class App extends Component {
                                 )
                       }
                       <button style={{cursor:'pointer'}} className="btn btn-info btn-sm m-2" onClick={()=> this.downloadFile(resultset, 'resultset')}>
-                          <i className="fa fa-edit"></i>
+                          <i class="fa fa-download"></i>
                           &nbsp; Download resultset.json
                       </button>
                       </span>

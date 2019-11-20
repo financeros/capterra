@@ -1,3 +1,4 @@
+const moment = require("moment")
 // Convert each period to timeframe/range
 const convertHoursToTime = (hour) => `${(parseInt(hour) < 10) ? '0'+hour : hour }:00:00`;
 
@@ -21,7 +22,6 @@ const createTimeframes = (nPeriods) => {
 
 // check if timestamp belongs to given period
 const hasClickPeriod = (timestamp, min, max) => {
-    const moment = require("moment")
     var time = timestamp.slice(-8)
     var date = timestamp
 
@@ -69,7 +69,11 @@ const checkIps = (json_data, period) => {
     var expensive_clicks = []
 
     // sort clicks by timestamp
-    period_clicks.sort((a, b) => a.timestamp - b.timestamp)
+    period_clicks.sort((a, b) => {
+      a = moment(a.timestamp, "MM/DD/YYYY HH:mm:ss")
+      b = moment(b.timestamp, "MM/DD/YYYY HH:mm:ss")
+      return a - b
+    })
 
     if (period_clicks.length > 0){
         for (var c in period_clicks){

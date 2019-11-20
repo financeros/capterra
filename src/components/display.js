@@ -64,7 +64,10 @@ const Display = props => {
                 }
                 {
                     (props.expensive_clicks  && props.expensive_clicks.length > 0) ? (
-                        <div style={{cursor: 'pointer'}} onClick={() => props.downloadFile(props.expensive_clicks, 'periodset_' + props.period.period)} className="btn btn-outline-primary btn-sm">Download periodset_{props.period.period}.json</div>
+                        <div style={{cursor: 'pointer'}} className="btn btn-outline-primary btn-sm p-1"
+                             onClick={() => props.downloadFile(props.expensive_clicks, 'periodset_' + props.period.period)}>
+                          &nbsp; Download periodset_{props.period.period}.json <i class="fa fa-download"></i>
+                        </div>
                     ) : null
                 }
             </div>
