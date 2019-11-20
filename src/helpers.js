@@ -3,7 +3,7 @@ const moment = require("moment")
 const convertHoursToTime = (hour) => `${(parseInt(hour) < 10) ? '0'+hour : hour }:00:00`;
 
 // create timeframes for each period
-const getPeriodRange = (p) => {
+const getClickPeriod = (p) => {
       var min, max, period;
       period = p.toString()
       min = convertHoursToTime(p-1)
@@ -12,10 +12,10 @@ const getPeriodRange = (p) => {
 }
 
 // create all timeframes given number of periods
-const createTimeframes = (nPeriods) => {
+const createClickPeriods = (nPeriods) => {
     var periods = {};
     for (var x = 1; x <= nPeriods; x++) {
-      periods[x] = getPeriodRange(x)
+      periods[x] = getClickPeriod(x)
     }
     return periods
 }
@@ -95,11 +95,11 @@ const checkIps = (json_data, period) => {
     return { period_clicks, expensive_clicks, invalid_ips }
 }
 
-const createResultset = (data) => {
-    var timeframes = createTimeframes(24)
+const createResultset = (json_data) => {
+    var timeframes = createClickPeriods(24)
     var resultset = []
     for (var period in timeframes){
-        var expensive_clicks = checkIps(data, timeframes[period]).expensive_clicks
+        var expensive_clicks = checkIps(json_data, timeframes[period]).expensive_clicks
         resultset.push(...expensive_clicks)
     }
 
@@ -107,4 +107,4 @@ const createResultset = (data) => {
 }
 
 
-module.exports = { convertHoursToTime, getPeriodRange, createTimeframes, checkIps, hasClickPeriod, createResultset }
+module.exports = { getClickPeriod, createClickPeriods, checkIps, hasClickPeriod, createResultset }

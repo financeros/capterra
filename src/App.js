@@ -7,7 +7,7 @@ import InputForm from './components/inputform'
 
 
 const data = require('./data/clicks.json');
-const { getPeriodRange, createTimeframes, checkIps, createResultset } = require('./helpers');
+const { getClickPeriod, createClickPeriods, checkIps, createResultset } = require('./helpers');
 
 
 class App extends Component {
@@ -25,7 +25,7 @@ class App extends Component {
 
      // update display data based on selected period
      updatePeriod = (period) => {
-         period = getPeriodRange(period)
+         period = getClickPeriod(period)
 
          var { period_clicks, expensive_clicks, invalid_ips } = checkIps(this.state.default_data, period)
          this.setState({ period, period_clicks, expensive_clicks, invalid_ips })
@@ -112,7 +112,7 @@ class App extends Component {
                                 )
                       }
                       <button style={{cursor:'pointer'}} className="btn btn-info btn-sm m-2" onClick={()=> this.downloadFile(resultset, 'resultset')}>
-                          <i class="fa fa-download"></i>
+                          <i className="fa fa-download"></i>
                           &nbsp; Download resultset.json
                       </button>
                       </span>
@@ -120,7 +120,7 @@ class App extends Component {
 
                   <div className="container">
                       <div className='row m-1 p-1'>
-                          <Periods periods={createTimeframes(24)} updatePeriod={this.updatePeriod} period={period}  />
+                          <Periods periods={createClickPeriods(24)} updatePeriod={this.updatePeriod} period={period}  />
                       </div>
 
                       <div className="row m-2 p-3">
