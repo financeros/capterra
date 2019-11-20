@@ -32,13 +32,13 @@ Location -> /path/to/solution_Hassan_Badru/code_output/result.json
 
 ```
 solution_Hassan_Badru
-    ├── src
-    │   ├── components
+    ├── src/
+    │   ├── components/
     │   │   ├── clicks.js
     │   │   ├── display.js
     │   │   ├── inputform.js
     │   │   └── periods.js
-    │   ├── data
+    │   ├── data/
     │   │   ├── clicks.json
     │   │   └── test_clicks.json
     │   ├── App.js
@@ -48,16 +48,20 @@ solution_Hassan_Badru
     │   ├── index.js
     │   ├── helpers.js
     │   ├── serviceWorker.js
-    │   ├── logo.svg
+    │   └── logo.svg
+    ├── public/
+    │   └── index.html
     ├── solution.js
+    └── code_output/
+        └── resultset.json
     ├── README.md
+    ├── node_modules/
     ├── package.json
     ├── package-lock.json
-    └── code_output
-        └── resultset.json
+    ├── .git/
+    └── .gitignore
+
 ```
-
-
 ## Run Web App
 The React App would run on [localhost:3000](http://localhost:3000/) with the command:
 
@@ -120,7 +124,7 @@ Used React Class & Function Components + React Hooks
 ### App
 - Class component that initialize / manage entire app states
 - Download button for resultset.json
-- Shows toggle button to open user inputted JSON form 
+- Shows toggle button to open user inputted JSON form
 - (if user inputted JSON), allow Refresh of data to default
 
 ### Display
