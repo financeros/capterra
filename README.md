@@ -119,6 +119,9 @@ Ran all test suites.
 - Allows and validates user inputted JSON data
 - Allows reset of app data to JSON file (clicks.json)
 
+### Assumptions
+Click timestamp Format -> "MM/DD/YYYY HH:mm:ss"
+
 ## Main Components
 Used React Class & Function Components + React Hooks
 ### App
@@ -151,6 +154,6 @@ Used React Class & Function Components + React Hooks
 - **period_clicks** ```Array``` - total clicks within period
 - **expensive_clicks** ```Array``` - highest and/or earliest clicks within period
 - **invalid_ips** ```Array``` - All clicks with IP appearing more than 10 times
-- **resultset** ```Array``` - Result set that includes each valid clicks/IPs within each one-hour period
+- **resultset** ```Array ``` - Result set (array of hashes) that includes each valid clicks/IPs within each one-hour period
 - **hide_form** ```Boolean``` - Toggle JSON input form
 - **default_data** ```Array``` - current JSON data loaded
