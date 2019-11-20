@@ -84,7 +84,7 @@ npm run test
 Sample test:
 ```bash
 PASS  src/App.test.js
- ✓ renders without crashing (271ms)
+ ✓ renders App without crashing (271ms)
  ✓ check if timestamp belongs to period (4ms)
  ✓ create period ranges (1ms)
  ✓ check for invalid ips + most expensive clicks within period (10ms)
@@ -98,7 +98,7 @@ Ran all test suites.
 ```
 
 
-## Design
+## Design & Approach
 - Extracts JSON data from file (clicks.json)
 - Creates **24** one-hour periods
 - Groups Clicks data into one-hour periods
@@ -112,7 +112,7 @@ Ran all test suites.
 - If Duplicate Click exists, compares click amounts for similar IP and only adds the more expensive click to result set
 - Concatenates array of result set for all one-hour periods
 - Produces a resultset.json file from resultset array
-- Stores resultset.json in root folder 'code_output'
+- Stores resultset.json in root folder **code_output**
 ### Additional Web App Features
 - Allows view of clicks per period
 - Allows download of valid Most Expensive Clicks per period
