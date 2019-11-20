@@ -20,7 +20,7 @@ const createClickPeriods = (nPeriods) => {
     return periods
 }
 
-// check if timestamp belongs to given period
+// check if timestamp is within click period range
 const hasClickPeriod = (timestamp, min, max) => {
     var time = timestamp.slice(-8)
     var date = timestamp
@@ -37,6 +37,7 @@ const hasClickPeriod = (timestamp, min, max) => {
     return false
 }
 
+// finds all clicks with each click period
 const groupClicks = (json_data, period) => {
     var period_clicks = []
     var invalid_ips = {}
@@ -62,7 +63,7 @@ const groupClicks = (json_data, period) => {
  }
 
 
-// Sort and find most expensive click with IP occurence <= 10
+// Sort and find valid earliest / most expensive click (with IP occurence <= 10)
 const checkIps = (json_data, period) => {
 
     var { period_clicks, invalid_ips } = groupClicks(json_data, period)
@@ -95,6 +96,7 @@ const checkIps = (json_data, period) => {
     return { period_clicks, expensive_clicks, invalid_ips }
 }
 
+// takes in clicks JSON data and concatenates result set from each click period
 const createResultset = (json_data) => {
     var timeframes = createClickPeriods(24)
     var resultset = []

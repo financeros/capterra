@@ -11,7 +11,7 @@ This app allows user to view or download valid most Expensive clicks
 - [x] Jest - for basic testing
 
 ## Solution
-While within root directory (i.e. solution_Hassan_Badru)
+While within root directory
 
 ### Install Dependencies
 This would install the necessary package.json modules
@@ -29,7 +29,7 @@ Note: If a **code_output** folder doesn't already exist, one would be created
 $ File -> resultset.json has been saved!
 Location -> /path/to/solution_Hassan_Badru/code_output/resultset.json
 ```
-
+### Root Folder
 ```
 solution_Hassan_Badru
     ├── src/
@@ -99,7 +99,7 @@ Ran all test suites.
 
 
 ## Design & Approach
-- Extracts JSON data from file (clicks.json)
+- Extracts Clicks JSON data from file (clicks.json)
 - Creates **24** one-hour periods
 - Groups Clicks data into one-hour periods
 - Creates an IP Count Lookup table
@@ -119,14 +119,14 @@ Ran all test suites.
 - Allows and validates user inputted JSON data
 - Allows reset of app data to JSON file (clicks.json)
 
-### Using a custom-created (helpers) module
-- ```convertHoursToTime = (hour)``` - takes in a period number and returns the maximum hour mark (format -> HH:mm:ss)
+### Using a custom (helpers) module
+- ```convertHoursToTime = (hour)``` - takes in a period number and returns the maximum hour mark (click period's time format -> ```HH:mm:ss```)
 - ```getClickPeriod(p)``` - takes in a period number and returns a minimum - maximum time range (click period)
 - ```createClickPeriods(nPeriods)``` - given number of periods (24), creates a click period for each 24 hours
 - ```hasClickPeriod(timestamp, min, max) ``` - checks if timestamp is within click period
 - ```groupClicks(json_data, period)``` - add clicks that belong to specific click periods
-- ```checkIps(json_data, period)``` - check if all click IPs within the period are valid, adds expensive clicks (valid / highest / earliest) to period result
-- ```createResultset(json_data)``` - Concatenates final results set from all click periods
+- ```checkIps(json_data, period)``` - check if all click IPs within the click period are valid, adds clicks (valid / most expensive / earliest) to click period's result set
+- ```createResultset(json_data)``` - Concatenates total results set from all click periods
 
 ### Assumptions
 - Click timestamp Format -> ```MM/DD/YYYY HH:mm:ss```
